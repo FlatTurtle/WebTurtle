@@ -8,19 +8,9 @@ window.Map = (function() {
     */
     function initialize(config)
     {
-        // Get zoom from config
-        var zoom, turtle;
-        for (var i in config.turtles)
-        {
-            turtle = config.turtles[i];
-            if (turtle.type == "map") zoom = parseInt(turtle.options.zoom);
-        }
-
-        // Default zoom
-        if (!zoom) zoom = 15;
-
         var mapOptions = {
-            zoom: zoom,
+            zoom: 14,
+            disableDefaultUI: true,
             center: new google.maps.LatLng(config.interface.latitude, config.interface.longitude),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
