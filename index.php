@@ -11,13 +11,13 @@
             padding: 0px
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="libs/jquery.js"></script>
     <script src="core/webturtle.js"></script>
     <script src="core/map.js"></script>
 
     <script>
-    WebTurtle.initialize('http://s.flatturtle.com/<?php echo $_SERVER['QUERY_STRING']; ?>.json');
+    WebTurtle.initialize('//s.flatturtle.com/<?php echo $_SERVER['QUERY_STRING']; ?>.json');
     </script>
 
 </head>
