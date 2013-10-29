@@ -13,11 +13,17 @@
     </style>
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="libs/jquery.js"></script>
-    <script src="core/webturtle.js"></script>
+    <script src="libs/underscore.js"></script>
+    <script src="libs/backbone.js"></script>
+
+    <script src="core/log.js"></script>
+    <script src="core/utilities.js"></script>
+    <script src="core/turtles.js"></script>
+    <script src="core/app.js"></script>
     <script src="core/map.js"></script>
 
     <script>
-    WebTurtle.initialize('//s.flatturtle.com/<?php echo $_SERVER['QUERY_STRING']; ?>.json');
+    App.initialize('//s.flatturtle.com/<?php echo $_SERVER['QUERY_STRING']; ?>.json');
     </script>
 
 </head>

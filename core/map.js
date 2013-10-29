@@ -1,13 +1,22 @@
 
 window.Map = (function() {
 
+    // google maps object
     var gmap;
+
+    // all markers
+    var markers = [];
+
+    // all popups
+    var popups = [];
 
     /**
     * Initialize the Map object.
     */
     function initialize(config)
     {
+        Log.debug("Initializing map");
+
         var mapOptions = {
             zoom: 14,
             disableDefaultUI: true,
@@ -15,16 +24,87 @@ window.Map = (function() {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
-        // Create google maps object
-        gmap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        // create google maps object
+        gmap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-        // Add traffic
+        // recenter on resize
+        google.maps.event.addListener(gmap, "idle", function(){
+            gmap.setCenter(mapOptions.center);
+            google.maps.event.trigger(gmap, "resize");
+        });
+
+        // add traffic
         var trafficLayer = new google.maps.TrafficLayer();
         trafficLayer.setMap(gmap);
+
+        // add location marker
+        var here = marker(config.interface.latitude, config.interface.longitude);
+
+        // add location popup
+        popup(here, "<strong>" + config.interface.title + "</strong><br>" + config.interface.location);
+    }
+
+    /**
+    * Add marker to map.
+    */
+    function marker(latitude, longitude)
+    {
+        // marker location
+        var myLatlng = new google.maps.LatLng(latitude, longitude);
+
+        // add marker to map
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: gmap
+        });
+
+        // add to markers list
+        markers.push(marker);
+
+        // fit markers on screen
+        /*if (markers.length >= 2)
+        {
+            var bounds = new google.maps.LatLngBounds();
+
+            for (var i in markers)
+            {
+                bounds.extend(markers[i].position);
+            }
+
+            gmap.fitBounds(bounds);
+        }*/
+
+        return marker;
+    }
+
+    function popup(marker, content)
+    {
+        var popup = new google.maps.InfoWindow({
+            content: content
+        });
+
+        // add to popups list
+        popups.push(popup);
+
+        google.maps.event.addListener(marker, 'click', function()
+        {
+            // close other popups
+            for (var i in popups)
+            {
+                popups[i].close();
+            }
+
+            // open popup
+            popup.open(gmap, marker);
+        });
+
+        return popup;
     }
 
     return {
-        initialize: initialize
+        initialize: initialize,
+        marker: marker,
+        popup: popup
     }
 
 }());
