@@ -28,8 +28,9 @@ window.Map = (function() {
         gmap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
         // recenter on resize
-        google.maps.event.addListener(gmap, "idle", function(){
-            gmap.setCenter(mapOptions.center);
+        google.maps.event.addListener(gmap, "idle", function()
+        {
+            //gmap.setCenter(mapOptions.center);
             google.maps.event.trigger(gmap, "resize");
         });
 
