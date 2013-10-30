@@ -70,7 +70,9 @@ window.Turtles = (function() {
         // build and assign collection
         if (typeof turtle.collection == "function")
         {
-            instance.collection = new turtle.collection(turtle.models, options);
+            instance.collection = new turtle.collection(turtle.models, _.extend(options, {
+                model : instance.model
+            }));
 
             if (instance.collection.model == null)
             {

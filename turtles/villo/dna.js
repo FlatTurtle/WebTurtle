@@ -24,7 +24,7 @@
         render : function()
         {
             // add marker
-            var marker = Map.marker(this.options.latitude, this.options.longitude);
+            var marker = Map.marker(this.options.latitude, this.options.longitude, "images/bike.png");
 
             // add popup
             var popup = Map.popup(marker, "<strong>Villo</strong>");

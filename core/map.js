@@ -47,16 +47,25 @@ window.Map = (function() {
     /**
     * Add marker to map.
     */
-    function marker(latitude, longitude)
+    function marker(latitude, longitude, icon)
     {
         // marker location
         var myLatlng = new google.maps.LatLng(latitude, longitude);
 
-        // add marker to map
-        var marker = new google.maps.Marker({
+        // marker options
+        var options = {
             position: myLatlng,
-            map: gmap
-        });
+            map: gmap,
+        }
+
+        // custom icon
+        if (icon)
+        {
+            options.icon = icon;
+        }
+
+        // add marker to map
+        var marker = new google.maps.Marker(options);
 
         // add to markers list
         markers.push(marker);

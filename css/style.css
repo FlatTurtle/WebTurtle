@@ -1,0 +1,39 @@
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
+
+table {
+	margin-top: 10px;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+table td {
+	padding: 2px 4px;
+}
+
+.time {
+	display: inline-block;
+	color: #555 !important;
+	font-weight: bold !important;
+}
+
+.label {
+	text-align: center;
+	background-color: #555;
+    border-radius: 5px;
+    color: #FFF;
+    padding: 1px 2px;
+    font-size: 90%;
+    font-weight: bold !important;
+    width: 100%;
+    display: block;
+    min-width: 15px;
+}
+
+.delay {
+	color: red;
+	font-weight: bold !important;
+}

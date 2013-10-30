@@ -1,0 +1,19 @@
+<strong>De Lijn:</strong> {{ location }}
+
+<table>
+{{#entries}}
+	<tr>
+
+		<td>
+			<span class="time">{{time}}</span>
+		</td>
+		<td>
+			<span class="label" style="background-color: #{{color}}">{{short_name}}</span>
+		</td>
+		<td>
+			{{long_name}}
+		</td>
+
+	</tr>
+{{/entries}}
+</table>
