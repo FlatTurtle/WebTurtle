@@ -4,6 +4,10 @@ html, body, #map-canvas {
     padding: 0px
 }
 
+strong {
+	font-weight: bold !important;
+}
+
 table {
 	margin-top: 10px;
 	border-spacing: 0;
