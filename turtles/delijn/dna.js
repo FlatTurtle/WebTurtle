@@ -65,7 +65,7 @@
         initialize : function(options)
         {
             // prevents loss of 'this' inside methods
-            _.bindAll(this, "render", "popup");
+            _.bindAll(this, "render", "addPopup");
 
             this.options = options;
             var self = this;
@@ -76,7 +76,7 @@
                 self.template = template;
 
                 // check if we're ready to add the popup
-                self.popup();
+                self.addPopup();
             });
 
             // get marker location
@@ -89,25 +89,24 @@
 
                     // show marker on the map
                     self.render();
-
-                    // check if we're ready to add the popup
-                    self.popup();
                 }
             });
 
             // show popup when collection is ready
-            this.collection.on("sync", this.popup);
+            this.collection.on("sync", this.addPopup);
         },
         render : function()
         {
             // add marker
-            this.marker = Map.marker(this.options.latitude, this.options.longitude, "images/bus.png");
+            this.marker = Map.marker(this.options.latitude, this.options.longitude, "bus");
+
+            // check if we're ready to add the popup
+            this.addPopup();
         },
-        popup : function()
+        addPopup : function()
         {
             // wait for everything to load
             if (!this.template) return;
-            if (!this.collection.length) return;
             if (!this.marker) return;
 
             var data = {
@@ -119,7 +118,14 @@
             var html = Mustache.render(this.template, data);
 
             // add popup
-            var popup = Map.popup(this.marker, html);
+            if (this.popup)
+            {
+                this.popup.setContent(html);
+            }
+            else
+            {
+                this.popup = Map.popup(this.marker, html);
+            }
         }
     });
 

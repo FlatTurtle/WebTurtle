@@ -6,7 +6,7 @@ $.ajaxSetup({
     timeout: 15000
 });
 
-/*
+/**
  * A friendly time format function
  *
  * {Y} - 4 digit year

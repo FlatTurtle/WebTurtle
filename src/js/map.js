@@ -39,7 +39,7 @@ window.Map = (function() {
         trafficLayer.setMap(gmap);
 
         // add location marker
-        var here = marker(config.interface.latitude, config.interface.longitude);
+        var here = marker(config.interface.latitude, config.interface.longitude, "location");
 
         // add location popup
         popup(here, "<strong>" + config.interface.title + "</strong><br>" + config.interface.location);
@@ -62,7 +62,8 @@ window.Map = (function() {
         // custom icon
         if (icon)
         {
-            options.icon = icon;
+            url = "icon.php?type=" + icon + "&color=" + App.config.interface.color.replace('#', '');
+            options.icon = new google.maps.MarkerImage(url , undefined, undefined, undefined, new google.maps.Size(30, 30));
         }
 
         // add marker to map
