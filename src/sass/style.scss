@@ -41,3 +41,15 @@ table td {
 	color: red;
 	font-weight: bold !important;
 }
+
+#logo {
+	z-index: 99999;
+	bottom: 10px;
+	right: 5px;
+	position: absolute;
+	width: 150px;
+
+	img {
+		width: 100%;
+	}
+}

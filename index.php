@@ -8,6 +8,9 @@
     <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
+
+    <div id="logo"><img src="img/logo.svg?v=azfnazoi"></div>
+
     <div id="map-canvas"></div>
 
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
