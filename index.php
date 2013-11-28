@@ -4,12 +4,12 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title></title>
-    <link href="dist/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="dist/css/style.css?v=281101" rel="stylesheet" type="text/css" />
     <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
 
-    <div id="logo"><img src="img/logo.svg?v=azfnazoi"></div>
+    <div id="logo"><img src="img/logo.svg?v=281101"></div>
 
     <div id="map-canvas"></div>
 
