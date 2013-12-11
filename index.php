@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div id="logo"><img src="img/logo.svg?v=281101"></div>
+    <div id="logo"><a href="https://flatturtle.com" target="_blank"><img src="img/logo.svg?v=281101"></a></div>
 
     <div id="map-canvas"></div>
 
