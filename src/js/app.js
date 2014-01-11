@@ -36,6 +36,8 @@ window.App = (function() {
                     var turtle = config.turtles[id];
                     Turtles.grow(turtle.type, id, turtle.options, Map);
                 }
+
+                Turtles.grow('navitia', 100, { location: "RTP:SA:1781" }, Map);
             },
             error: function()
             {

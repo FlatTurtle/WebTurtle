@@ -1,0 +1,19 @@
+<strong>{{ location }}</strong>
+
+<table>
+{{#entries}}
+	<tr>
+
+		<td>
+			<span class="time">{{time}}</span>
+		</td>
+		<td>
+			<span class="label" style="background-color: #{{route.line.color}}">{{route.line.code}}</span>
+		</td>
+		<td>
+			{{route.name}}
+		</td>
+
+	</tr>
+{{/entries}}
+</table>

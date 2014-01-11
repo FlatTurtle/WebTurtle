@@ -13,7 +13,7 @@ guard 'sass',
 
 guard :concat,
     type: 'js',
-    files: %w(jquery underscore backbone jquery.mustache),
+    files: %w(jquery underscore backbone jquery.mustache iso8601),
     input_dir: 'src/js/vendor',
     output: 'dist/js/vendor'
 
