@@ -65,12 +65,22 @@ window.Map = (function() {
         // custom icon
         if (icon)
         {
+            // icon url
             url = "icon.php?type=" + icon + "&color=" + App.config.interface.color.replace('#', '');
-            options.icon = new google.maps.MarkerImage(url , undefined, undefined, undefined, new google.maps.Size(30, 30));
-        }
 
-        // add marker to map
-        var marker = new google.maps.Marker(options);
+            // set additional options
+            options.content = '<img src="' + url + '" width="30" height="30">';
+            options.flat = true;
+            options.anchor = new google.maps.Size(-15, -10);
+
+            // create rich marker to fix svg problems in IE
+            marker = new RichMarker(options);
+        }
+        else
+        {
+            // create default google marker
+            var marker = new google.maps.Marker(options);
+        }
 
         // add to markers list
         markers.push(marker);

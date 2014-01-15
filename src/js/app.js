@@ -37,10 +37,12 @@ window.App = (function() {
                     Turtles.grow(turtle.type, id, turtle.options, Map);
                 }
 
-                Turtles.grow('navitia', 100, { location: "RTP:SA:1781" }, Map);
+                // DEMO
+                //Turtles.grow('navitia', 100, { location: "RTP:SA:1781" }, Map);
             },
-            error: function()
+            error: function(jqXHR, textStatus, errorThrown)
             {
+                Log.error(errorThrown);
                 Log.error("Could not load JSON: " + api);
             }
         });
