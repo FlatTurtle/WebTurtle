@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title></title>
-    <link href="dist/css/style.css?v=281101" rel="stylesheet" type="text/css" />
+    <link href="dist/css/style.css?v=200101" rel="stylesheet" type="text/css" />
     <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
 
-    <div id="logo"><a href="https://flatturtle.com" target="_blank"><img src="img/logo.svg?v=281101"></a></div>
+    <div id="logo"><a href="https://flatturtle.com" target="_blank"><img src="img/logo.svg?v=200101"></a></div>
 
     <div id="map-canvas"></div>
 
