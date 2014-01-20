@@ -42,7 +42,7 @@ window.Map = (function() {
         var here = marker(config.interface.latitude, config.interface.longitude, "location");
 
         // add location popup
-        var info = popup(here, "<strong>" + config.interface.title + "</strong><br>" + config.interface.location);
+        var info = popup(here, '<div class="infowindow"><strong>' + config.interface.title + '</strong><br>' + config.interface.location + '</div>');
 
         // open popup
         info.open(gmap, here);
