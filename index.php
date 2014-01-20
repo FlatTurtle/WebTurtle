@@ -16,7 +16,7 @@
 
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="dist/js/vendor.js"></script>
-    <script src="dist/js/flatturtle.js"></script>
+    <script src="dist/js/flatturtle.js?v=200101"></script>
 
     <script>
     $(document).ready(function() {
