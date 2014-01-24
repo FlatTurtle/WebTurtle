@@ -22,6 +22,7 @@ window.Map = (function() {
             disableDefaultUI: false,
             streetViewControl: false,
             scrollwheel: false,
+            mapTypeControl: false,
             zoomControlOptions: {
                 style: google.maps.ZoomControlStyle.SMALL
             },

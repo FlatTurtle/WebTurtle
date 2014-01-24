@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title></title>
-    <link href="dist/css/style.css?v=200101" rel="stylesheet" type="text/css" />
+    <link href="dist/css/style.css?v=240101" rel="stylesheet" type="text/css" />
     <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
@@ -16,7 +16,7 @@
 
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="dist/js/vendor.js"></script>
-    <script src="dist/js/flatturtle.js?v=200101"></script>
+    <script src="dist/js/flatturtle.js?v=240101"></script>
 
     <script>
     $(document).ready(function() {
