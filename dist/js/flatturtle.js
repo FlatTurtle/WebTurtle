@@ -420,7 +420,13 @@ window.Map = (function() {
 
         var mapOptions = {
             zoom: 14,
-            disableDefaultUI: true,
+            disableDefaultUI: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            },
+            panControl: false,
             center: new google.maps.LatLng(config.interface.latitude, config.interface.longitude),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }

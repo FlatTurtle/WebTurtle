@@ -15,13 +15,19 @@
             this.options.region = "paris"; // DEMO
             this.options.location = "RTP:SP:4037026"; // DEMO
 
+            // http://api.navitia.io/v1/coverage/paris/places?q=a&type[]=stop_point&count=1
+            // http://api.navitia.io/v1/coverage/paris/stop_points/stop_point:RTP:SP:4037026/departures?from_datetime=
+
             // immediately get collection data
             this.fetch();
         },
         url : function()
         {
+            var d = new Date;
+            var query = d.format("{Y}{m}{d}T{H}{M}{S}");
+            console.log("http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/stop_point:" + this.options.location + "/departures?from_datetime=" + query);
 
-            return "http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/stop_point:" + this.options.location + "/departures";
+            return "http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/stop_point:" + this.options.location + "/departures?from_datetime=" + query;
         },
         parse : function(json)
         {
@@ -37,7 +43,7 @@
             		this.options.location = liveboard[i].stop_point.name.capitalize();
             	}
 
-            	// Use gray as default background color
+            	// use gray as default background color
             	if (liveboard[i].route.line.color == "FFFFFF")
             	{
             		liveboard[i].route.line.color = "555555";
