@@ -16,6 +16,9 @@
 
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="dist/js/vendor.js"></script>
+    <!--[if lte IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+    <![endif]-->
     <script src="dist/js/flatturtle.js?v=240101"></script>
 
     <script>

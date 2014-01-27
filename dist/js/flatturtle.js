@@ -357,6 +357,9 @@ window.App = (function() {
     {
         Log.debug("Initializing application");
 
+        // Accept cross domain
+        jQuery.support.cors = true;
+
 		$.ajax({
             url : api,
             dataType: "json",
