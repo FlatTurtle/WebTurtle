@@ -12,22 +12,33 @@
             }
 
             this.options = options;
-            this.options.region = "paris"; // DEMO
-            this.options.location = "RTP:SP:4037026"; // DEMO
+            var self = this;
 
-            // http://api.navitia.io/v1/coverage/paris/places?q=a&type[]=stop_point&count=1
-            // http://api.navitia.io/v1/coverage/paris/stop_points/stop_point:RTP:SP:4037026/departures?from_datetime=
+            // Get stop point id
+            if (!options.stop_point)
+            {
+                $.getJSON("http://api.navitia.io/v1/coverage/paris/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_point&count=1", function(data)
+                {
+                    self.options.stop_point = data.places[0].stop_point.id;
+                    self.options.latitude = parseFloat(data.places[0].stop_point.coord.lat);
+                    self.options.longitude = parseFloat(data.places[0].stop_point.coord.lon);
 
-            // immediately get collection data
-            this.fetch();
+                    // fetch data
+                    self.fetch();
+                });
+            }
+            else
+            {
+                // fetch data
+                self.fetch();
+            }
         },
         url : function()
         {
             var d = new Date;
             var query = d.format("{Y}{m}{d}T{H}{M}{S}");
-            console.log("http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/stop_point:" + this.options.location + "/departures?from_datetime=" + query);
 
-            return "http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/stop_point:" + this.options.location + "/departures?from_datetime=" + query;
+            return "http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query;
         },
         parse : function(json)
         {
@@ -48,6 +59,12 @@
             	{
             		liveboard[i].route.line.color = "555555";
             	}
+
+                // No all caps
+                if (liveboard[i].route.name == liveboard[i].route.name.toUpperCase())
+                {
+                    liveboard[i].route.name = liveboard[i].route.name.capitalize();
+                }
 
             	// set time
                 var time = new Date(Date.parse(liveboard[i].stop_date_time.departure_date_time));
