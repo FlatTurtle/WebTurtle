@@ -17,7 +17,7 @@
             // Get stop point id
             if (!options.stop_point)
             {
-                $.getJSON("http://api.navitia.io/v1/coverage/paris/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_point&count=1", function(data)
+                $.getJSON("https://api.navitia.io/v1/coverage/paris/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_point&count=1", function(data)
                 {
                     self.options.stop_point = data.places[0].stop_point.id;
                     self.options.latitude = parseFloat(data.places[0].stop_point.coord.lat);
@@ -38,7 +38,7 @@
             var d = new Date;
             var query = d.format("{Y}{m}{d}T{H}{M}{S}");
 
-            return "http://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query;
+            return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query;
         },
         parse : function(json)
         {
