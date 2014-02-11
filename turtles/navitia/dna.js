@@ -102,8 +102,16 @@
         },
         render : function()
         {
-        	// add marker
-            this.marker = Map.marker(this.options.latitude, this.options.longitude, "bus");
+            if (this.options.location.match(/ rer$/i))
+            {
+                // add rer marker
+                this.marker = Map.marker(this.options.latitude, this.options.longitude, "rer");
+            }
+            else
+            {
+                // add bus marker
+                this.marker = Map.marker(this.options.latitude, this.options.longitude, "bus");
+            }
 
             // check if we're ready to add the popup
             this.addPopup();
