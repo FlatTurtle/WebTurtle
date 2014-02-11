@@ -23,7 +23,7 @@ $svg = file_get_contents("img/icons/$type.svg");
 $search  = array('#85BDC7', '#4299A8', '#307982', '#025672', '#34848F', '#0A5B60');
 
 // Colors to replace
-$replace = array($lighter, $hex, $darker, $darker, null, $darker);
+$replace = array($lighter, $lighter, $darker, $darker, $hex, $darker);
 
 // Do replace
 $svg = str_replace($search, $replace, $svg);
