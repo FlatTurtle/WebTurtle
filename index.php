@@ -6,11 +6,20 @@
     <meta charset="utf-8">
     <title></title>
     <link href="dist/css/style.css?v=240101" rel="stylesheet" type="text/css" />
+    <link href="//fast.fonts.com/cssapi/66253153-9c89-413c-814d-60d3ba0d6ac2.css" type="text/css" >
     <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
 
     <div id="logo"><a href="https://flatturtle.com" target="_blank"><img src="img/logo.svg?v=200101"></a></div>
+    <div id="legend">
+        <ul class="legend text-color">
+            <li class="green">&gt; 80 km/h&nbsp;&nbsp;—</li>
+            <li class="orange">40-80 km/h&nbsp;&nbsp;—</li>
+            <li class="red">&lt; 40 km/h&nbsp;&nbsp;—</li>
+            <li class="black">&lt; 10 km/h&nbsp;&nbsp;—</li>
+        </ul>
+    </div>
 
     <div id="map-canvas"></div>
 

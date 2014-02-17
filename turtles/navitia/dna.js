@@ -107,6 +107,11 @@
                 // add rer marker
                 this.marker = Map.marker(this.options.latitude, this.options.longitude, "rer");
             }
+            else if (this.options.location.match(/metro$/i))
+            {
+                // add rer marker
+                this.marker = Map.marker(this.options.latitude, this.options.longitude, "metro");
+            }
             else
             {
                 // add bus marker

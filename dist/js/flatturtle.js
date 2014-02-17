@@ -464,11 +464,20 @@ window.Map = (function() {
         // marker location
         var myLatlng = new google.maps.LatLng(latitude, longitude);
 
+        // check markers for the same location
+        for (var i in markers)
+        {
+            if (markers[i].position.equals(myLatlng))
+            {
+                // TODO
+            }
+        }
+
         // marker options
         var options = {
             position: myLatlng,
             map: gmap,
-        }
+        };
 
         // custom icon
         if (icon)
