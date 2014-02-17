@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title></title>
-    <link href="dist/css/style.css?v=240101" rel="stylesheet" type="text/css" />
+    <link href="dist/css/style.css?v=170201" rel="stylesheet" type="text/css" />
     <link href="//fast.fonts.com/cssapi/66253153-9c89-413c-814d-60d3ba0d6ac2.css" type="text/css" >
     <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
 
-    <div id="logo"><a href="https://flatturtle.com" target="_blank"><img src="img/logo.svg?v=200101"></a></div>
+    <div id="logo"><a href="https://flatturtle.com" target="_blank"><img src="img/logo.svg?v=170201"></a></div>
     <div id="legend">
         <ul class="legend text-color">
             <li class="green">&gt; 80 km/h&nbsp;&nbsp;—</li>
@@ -28,7 +28,7 @@
     <!--[if lte IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
     <![endif]-->
-    <script src="dist/js/flatturtle.js?v=240101"></script>
+    <script src="dist/js/flatturtle.js?v=170201"></script>
 
     <script>
     $(document).ready(function() {
