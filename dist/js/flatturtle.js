@@ -469,7 +469,7 @@ window.Map = (function() {
         {
             if (markers[i].position.equals(myLatlng))
             {
-                // TODO
+                myLatlng = new google.maps.LatLng(latitude + 0.0001, longitude + 0.0001);
             }
         }
 
