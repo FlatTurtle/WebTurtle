@@ -48,6 +48,9 @@ window.Map = (function() {
         // add location marker
         var here = marker(config.interface.latitude, config.interface.longitude, "location");
 
+        // make sure the location marker is on top
+        here.setZIndex(9999);
+
         // add location popup
         var info = popup(here, '<div class="infowindow"><strong>' + config.interface.title + '</strong><br>' + config.interface.location + '</div>');
 
@@ -58,7 +61,7 @@ window.Map = (function() {
     /**
     * Add marker to map.
     */
-    function marker(latitude, longitude, icon)
+    function marker(latitude, longitude, icon, color, size)
     {
         // marker location
         var myLatlng = new google.maps.LatLng(latitude, longitude);
@@ -81,13 +84,19 @@ window.Map = (function() {
         // custom icon
         if (icon)
         {
+            // get color from interface
+            if (!color) color = App.config.interface.color;
+
             // icon url
-            url = "icon.php?type=" + icon + "&color=" + App.config.interface.color.replace('#', '');
+            url = "icon.php?type=" + icon + "&color=" + color.replace('#', '');
+
+            // default size
+            if (!size) size = 30;
 
             // set additional options
-            options.content = '<img src="' + url + '" width="30" height="30">';
+            options.content = '<img src="' + url + '" width="' + size + '" height="' + size + '">';
             options.flat = true;
-            options.anchor = new google.maps.Size(-15, -10);
+            options.anchor = new google.maps.Size(-(size/2), -(size/5*2));
 
             // create rich marker to fix svg problems in IE
             marker = new RichMarker(options);
