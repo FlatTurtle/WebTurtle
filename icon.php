@@ -11,19 +11,40 @@ if (strlen($hex) == 3)
 	$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
 }
 
+// Base color
+$white = "#FFFFFF";
+
+// Invert colors
+if (isset($_GET['inverse']))
+{
+	$white = '#' . $hex;
+	$hex = "FFFFFF";
+}
+
 // Create color object
 $color = new Color("#$hex");
-$darker = '#' . $color->darken();
-$lighter = '#' . $color->lighten();
+$dark ='#' . $color->darken();
+$darker = '#' . $color->darken(20);
+$light = '#' . $color->lighten();
+$lighter = '#' . $color->lighten(20);
 
 // Get SVG content
 $svg = file_get_contents("img/icons/$type.svg");
 
 // Colors to search
-$search  = array('#85BDC7', '#4299A8', '#307982', '#025672', '#34848F', '#0A5B60');
+$search  = array('#85BDC7', '#4299A8', '#307982', '#025672', '#34848F', '#0A5B60', "#FFFFFF");
 
 // Colors to replace
-$replace = array($lighter, $lighter, $darker, $darker, $hex, $darker);
+
+$replace = array(
+	$light, // glow left top
+	$light, // orb base color
+	$dark, // bottom right shadow
+	$darker, // orb outer ring
+	$hex, // orb inner ring
+	$dark, // icon shadow
+	$white // icon base color
+);
 
 // Do replace
 $svg = str_replace($search, $replace, $svg);

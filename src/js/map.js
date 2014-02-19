@@ -46,7 +46,7 @@ window.Map = (function() {
         trafficLayer.setMap(gmap);
 
         // add location marker
-        var here = marker(config.interface.latitude, config.interface.longitude, "location");
+        var here = marker(config.interface.latitude, config.interface.longitude, "location", null, null, true);
 
         // make sure the location marker is on top
         here.setZIndex(9999);
@@ -61,7 +61,7 @@ window.Map = (function() {
     /**
     * Add marker to map.
     */
-    function marker(latitude, longitude, icon, color, size)
+    function marker(latitude, longitude, icon, color, size, inverse)
     {
         // marker location
         var myLatlng = new google.maps.LatLng(latitude, longitude);
@@ -88,7 +88,10 @@ window.Map = (function() {
             if (!color) color = App.config.interface.color;
 
             // icon url
-            url = "icon.php?type=" + icon + "&color=" + color.replace('#', '');
+            url = "icon.php?type=" + icon + "&color=" + color.replace('#', '') + "&inverse=1";
+
+            // invert colors
+            if (inverse) url += "&inverse=1";
 
             // default size
             if (!size) size = 30;
