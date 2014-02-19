@@ -489,7 +489,7 @@ window.Map = (function() {
             if (!color) color = App.config.interface.color;
 
             // icon url
-            url = "icon.php?type=" + icon + "&color=" + color.replace('#', '') + "&inverse=1";
+            url = "icon.php?type=" + icon + "&color=" + color.replace('#', '');
 
             // invert colors
             if (inverse) url += "&inverse=1";
