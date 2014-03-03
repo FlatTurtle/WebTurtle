@@ -17,7 +17,7 @@
             // Get stop point id
             if (!options.stop_point)
             {
-                $.getJSON("https://api.navitia.io/v1/coverage/paris/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_point&count=1", function(data)
+                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_point&count=1", function(data)
                 {
                     self.options.stop_point = data.places[0].stop_point.id;
                     self.options.latitude = parseFloat(data.places[0].stop_point.coord.lat);
@@ -29,6 +29,13 @@
             }
             else
             {
+                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point, function(data)
+                {
+                    self.options.latitude = parseFloat(data.stop_points[0].coord.lat);
+                    self.options.longitude = parseFloat(data.stop_points[0].coord.lon);
+                    self.options.location = data.stop_points[0].name.capitalize();
+                });
+
                 // fetch data
                 self.fetch();
             }
@@ -125,7 +132,7 @@
         {
             // wait for everything to load
             if (!this.template) return;
-            if (!this.collection.length) return;
+            if (!this.options.location) return;
             if (!this.marker) return;
 
             var data = {
