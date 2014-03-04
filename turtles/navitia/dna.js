@@ -14,20 +14,8 @@
             this.options = options;
             var self = this;
 
-            // Get stop point id
-            if (!options.stop_point)
-            {
-                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_point&count=1", function(data)
-                {
-                    self.options.stop_point = data.places[0].stop_point.id;
-                    self.options.latitude = parseFloat(data.places[0].stop_point.coord.lat);
-                    self.options.longitude = parseFloat(data.places[0].stop_point.coord.lon);
-
-                    // fetch data
-                    self.fetch();
-                });
-            }
-            else
+            // stop point mode
+            if (options.stop_point)
             {
                 $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point, function(data)
                 {
@@ -39,17 +27,57 @@
                 // fetch data
                 self.fetch();
             }
+
+            // stop area mode
+            else if (options.stop_area)
+            {
+                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area, function(data)
+                {
+                    self.options.latitude = parseFloat(data.stop_areas[0].coord.lat);
+                    self.options.longitude = parseFloat(data.stop_areas[0].coord.lon);
+                    self.options.location = data.stop_areas[0].name.capitalize();
+                });
+
+                // fetch data
+                self.fetch();
+            }
+
+            // search mode
+            else
+            {
+                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_area&count=1", function(data)
+                {
+                    self.options.stop_area = data.places[0].stop_area.id;
+                    self.options.latitude = parseFloat(data.places[0].stop_area.coord.lat);
+                    self.options.longitude = parseFloat(data.places[0].stop_area.coord.lon);
+
+                    // fetch data
+                    self.fetch();
+                });
+            }
         },
         url : function()
         {
             var d = new Date;
             var query = d.format("{Y}{m}{d}T{H}{M}{S}");
 
-            return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query;
+            if (this.options.stop_point)
+            {
+                return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query;
+            }
+            else if (this.options.mode)
+            {
+                return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/commercial_modes/commercial_mode:" + this.options.mode + "/departures?from_datetime=" + query;
+            }
+            else
+            {
+                return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/departures?from_datetime=" + query;
+            }
         },
         parse : function(json)
         {
             var liveboard = json.departures;
+            var lines = new Array();
 
             for (var i in liveboard)
             {
@@ -76,6 +104,44 @@
             	// set time
                 var time = new Date(Date.parse(liveboard[i].stop_date_time.departure_date_time));
                 liveboard[i].time = time.format("{H}:{M}");
+
+                // increment line popularity
+                lines[liveboard[i].route.line.code] = lines[liveboard[i].route.line.code] ? lines[liveboard[i].route.line.code]+1 : 1;
+            }
+
+            // select the most popular line
+            var max = 0; var selected;
+            for (var line in lines)
+            {
+                if (lines[line] > max)
+                {
+                    selected = line;
+                    max = lines[line];
+                }
+            }
+
+            // choose the icon based on the line
+            if (typeof selected == 'string')
+            {
+                if (selected.length == 1)
+                {
+                    if (selected >= 'A' && selected <= 'E') this.options.icon = "rer";
+                    else if (selected >= 'H' && selected <= 'U') this.options.icon = "train";
+                    else this.options.icon = "bus";
+                }
+                else
+                {
+                    this.options.icon = "bus";
+                }
+            }
+            else if (selected)
+            {
+                if (selected <= 14) this.options.icon = "metro";
+                else this.options.icon = "bus";
+            }
+            else
+            {
+                this.options.icon = "bus";
             }
 
             return liveboard;
@@ -109,19 +175,12 @@
         },
         render : function()
         {
-            if (this.options.location.match(/ rer$/i))
+            if (this.options.icon)
             {
-                // add rer marker
-                this.marker = Map.marker(this.options.latitude, this.options.longitude, "rer");
-            }
-            else if (this.options.location.match(/metro$/i))
-            {
-                // add rer marker
-                this.marker = Map.marker(this.options.latitude, this.options.longitude, "metro");
+                this.marker = Map.marker(this.options.latitude, this.options.longitude, this.options.icon);
             }
             else
             {
-                // add bus marker
                 this.marker = Map.marker(this.options.latitude, this.options.longitude, "bus");
             }
 
