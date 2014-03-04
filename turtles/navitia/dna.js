@@ -131,7 +131,8 @@
                 }
                 else
                 {
-                    this.options.icon = "bus";
+                    if (selected.charAt(0) == 'T') this.options.icon = "tram";
+                    else this.options.icon = "bus";
                 }
             }
             else if (selected)
