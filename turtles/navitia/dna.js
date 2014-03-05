@@ -67,7 +67,7 @@
             }
             else if (this.options.mode)
             {
-                return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/commercial_modes/commercial_mode:" + this.options.mode + "/departures?from_datetime=" + query;
+                return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/commercial_modes/commercial_mode:" + this.options.mode.toLowerCase() + "/departures?from_datetime=" + query;
             }
             else
             {
