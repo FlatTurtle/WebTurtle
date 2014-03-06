@@ -140,10 +140,6 @@
                 if (selected <= 14) this.options.icon = "metro";
                 else this.options.icon = "bus";
             }
-            else
-            {
-                this.options.icon = "bus";
-            }
 
             return liveboard;
         }
@@ -176,13 +172,28 @@
         },
         render : function()
         {
+            if (!this.options.latitude) return;
+            if (!this.options.longitude) return;
+
             if (this.options.icon)
             {
                 this.marker = Map.marker(this.options.latitude, this.options.longitude, this.options.icon);
             }
             else
             {
-                this.marker = Map.marker(this.options.latitude, this.options.longitude, "bus");
+                // New bagneux RER station
+                if (this.options.stop_point == 'stop_point:RTF:SP:BAGNE1')
+                {
+                    this.marker = Map.marker(this.options.latitude, this.options.longitude, "rer");
+                }
+                else if (this.options.mode)
+                {
+                    this.marker = Map.marker(this.options.latitude, this.options.longitude, this.options.mode);
+                }
+                else
+                {
+                    this.marker = Map.marker(this.options.latitude, this.options.longitude, "bus");
+                }
             }
 
             // check if we're ready to add the popup
@@ -197,7 +208,9 @@
 
             var data = {
                 location: this.options.location,
-                entries: this.collection.toJSON()
+                entries: this.collection.toJSON(),
+                empty: this.collection.length == 0,
+                underConstruction: this.options.stop_point == 'stop_point:RTF:SP:BAGNE1'
             }
 
             // render view

@@ -1,5 +1,6 @@
 <strong>{{ location }}</strong>
 
+{{^empty}}
 <table>
 {{#entries}}
 	<tr>
@@ -17,3 +18,15 @@
 	</tr>
 {{/entries}}
 </table>
+{{/empty}}
+
+{{#empty}}
+	{{#underConstruction}}
+	<div>Station en construction</div>
+	{{/underConstruction}}
+
+	{{^underConstruction}}
+	<div>Pas de véhicules a ce moment</div>
+	{{/underConstruction}}
+
+{{/empty}}
