@@ -10,6 +10,9 @@ window.Map = (function() {
     // all popups
     var popups = [];
 
+    // the traffic layer
+    var traffic;
+
     /**
     * Initialize the Map object.
     */
@@ -17,8 +20,11 @@ window.Map = (function() {
     {
         Log.debug("Initializing map");
 
+        // get zoom value from URL
+        var zoom = $.parameter('zoom');
+
         var mapOptions = {
-            zoom: 14,
+            zoom: zoom ? parseInt(zoom) : 14,
             disableDefaultUI: false,
             streetViewControl: false,
             scrollwheel: false,
@@ -42,8 +48,8 @@ window.Map = (function() {
         });
 
         // add traffic
-        var trafficLayer = new google.maps.TrafficLayer();
-        trafficLayer.setMap(gmap);
+        traffic = new google.maps.TrafficLayer();
+        traffic.setMap(gmap);
 
         // add location marker
         var here = marker(config.interface.latitude, config.interface.longitude, "location", null, null, true);
@@ -56,6 +62,33 @@ window.Map = (function() {
 
         // open popup
         info.open(gmap, here);
+
+        // traffic refresh interval
+        setTimeout(function(){
+            setInterval(refresh, 240000);
+        }, Math.round(Math.random() * 5000));
+    }
+
+    /**
+     * Refresh the traffic layer.
+     */
+    function refresh()
+    {
+        // remove traffic layer
+        if (traffic != null)
+        {
+            traffic.setMap(null);
+            delete traffic;
+            traffic = null;
+        }
+
+        // add traffic layer with delay
+        // http://stackoverflow.com/questions/7659072/google-maps-refresh-traffic-layer
+        setTimeout(function()
+        {
+            traffic = new google.maps.TrafficLayer();
+            traffic.setMap(gmap);
+        }, 1000);
     }
 
     /**
@@ -156,7 +189,8 @@ window.Map = (function() {
     return {
         initialize: initialize,
         marker: marker,
-        popup: popup
+        popup: popup,
+        refresh: refresh
     }
 
 }());

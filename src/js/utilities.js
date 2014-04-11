@@ -97,3 +97,20 @@ String.prototype.capitalize = function()
         return g1.toUpperCase() + g2;
     });
 }
+
+/**
+ * Get URL parameters
+ */
+$.parameter = function(name)
+{
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+
+    if (results == null)
+    {
+       return null;
+    }
+    else
+    {
+       return results[1] || 0;
+    }
+}
