@@ -61,7 +61,10 @@ window.Map = (function() {
         var info = popup(here, '<div class="infowindow"><strong>' + config.interface.title + '</strong><br>' + config.interface.location + '</div>');
 
         // open popup
-        info.open(gmap, here);
+        if ($.parameter('popup') != 0)
+        {
+            info.open(gmap, here);
+        }
 
         // traffic refresh interval
         setTimeout(function(){
