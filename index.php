@@ -16,7 +16,7 @@
         <ul class="legend text-color">
             <li class="green">&gt; 80 km/h&nbsp;&nbsp;—</li>
             <li class="orange">40-80 km/h&nbsp;&nbsp;—</li>
-            <li class="red">&lt; 40 km/h&nbsp;&nbsp;—</li>
+            <li class="red">10-40 km/h&nbsp;&nbsp;—</li>
             <li class="black">&lt; 10 km/h&nbsp;&nbsp;—</li>
         </ul>
     </div>
