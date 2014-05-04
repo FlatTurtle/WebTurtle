@@ -14,7 +14,7 @@
             this.options = options;
 
             // immediately get collection data
-            this.fetch();
+            if (!App.lite) this.fetch();
         },
         url : function()
         {

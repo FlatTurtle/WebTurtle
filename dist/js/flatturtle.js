@@ -377,6 +377,9 @@ window.App = (function() {
         // Accept cross domain
         jQuery.support.cors = true;
 
+        // Check if map is in lite mode
+        App.lite = $.parameter('lite') != null;
+
 		$.ajax({
             url : api,
             dataType: "json",

@@ -25,7 +25,7 @@
                 });
 
                 // fetch data
-                self.fetch();
+                if (!App.lite) self.fetch();
             }
 
             // stop area mode
@@ -39,7 +39,7 @@
                 });
 
                 // fetch data
-                self.fetch();
+                if (!App.lite) self.fetch();
             }
 
             // search mode
@@ -52,7 +52,7 @@
                     self.options.longitude = parseFloat(data.places[0].stop_area.coord.lon);
 
                     // fetch data
-                    self.fetch();
+                    if (!App.lite) self.fetch();
                 });
             }
         },
@@ -203,7 +203,6 @@
         {
             // wait for everything to load
             if (!this.template) return;
-            if (!this.options.location) return;
             if (!this.marker) return;
 
             var data = {

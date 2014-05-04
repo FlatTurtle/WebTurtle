@@ -14,7 +14,7 @@
             this.options = options;
 
             // immediately get collection data
-            this.fetch();
+            if (!App.lite) this.fetch();
         },
         url : function()
         {
@@ -97,7 +97,6 @@
         {
             // wait for everything to load
             if (!this.template) return;
-            if (!this.collection.length) return;
             if (!this.marker) return;
 
             var data = {
