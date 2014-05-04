@@ -24,11 +24,11 @@
     <div id="map-canvas"></div>
 
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="dist/js/vendor.js?v=1404"></script>
+    <script src="dist/js/vendor.js?v=0405"></script>
     <!--[if lte IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
     <![endif]-->
-    <script src="dist/js/flatturtle.js?v=1404"></script>
+    <script src="dist/js/flatturtle.js?v=0405"></script>
 
     <script>
     $(document).ready(function() {
