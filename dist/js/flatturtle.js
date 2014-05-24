@@ -441,6 +441,9 @@ window.Map = (function() {
     {
         Log.debug("Initializing map");
 
+        // show or hide the legend
+        if ($.parameter('legend') == 0) $('#legend').hide();
+
         // get zoom value from URL
         var zoom = $.parameter('zoom');
 
