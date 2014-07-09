@@ -108,6 +108,22 @@
                 var time = new Date(Date.parse(liveboard[i].stop_date_time.departure_date_time));
                 liveboard[i].time = time.format("{H}:{M}");
 
+                // Set proper icon
+                var selected = liveboard[i].route.line.code;
+                if (typeof selected == 'string'){
+                    if (selected.length == 1){
+                        if (selected >= 'A' && selected <= 'E') liveboard[i].route.icon = "img/icons/FT__0010_rer.png";
+                        else if (selected >= 'H' && selected <= 'U') liveboard[i].route.icon = "img/icons/FT__0009_train.png";
+                        else liveboard[i].route.icon = "img/icons/FT__0002_bus.png";
+                    }else{
+                        if (selected.charAt(0) == 'T') liveboard[i].route.icon = "img/icons/FT__0003_tram.png";
+                        else liveboard[i].route.icon = "img/icons/FT__0002_bus.png";
+                    }
+                }else if(selected){
+                    if (selected <= 14) liveboard[i].route.icon = "img/icons/FT__0003_tram.png";
+                    else liveboard[i].route.icon = "img/icons/FT__0002_bus.png";
+                }
+
                 // increment line popularity
                 lines[liveboard[i].route.line.code] = lines[liveboard[i].route.line.code] ? lines[liveboard[i].route.line.code]+1 : 1;
             }
