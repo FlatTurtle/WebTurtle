@@ -26,7 +26,7 @@
                 });
 
                 // fetch data
-                if (!App.lite) self.fetch();
+                self.fetch();
             }
 
             // stop area mode
@@ -41,7 +41,7 @@
                 });
 
                 // fetch data
-                if (!App.lite) self.fetch();
+                self.fetch();
             }
 
             // search mode
@@ -55,12 +55,16 @@
                     self.options.longitude = parseFloat(data.contents.places[0].stop_area.coord.lon);
 
                     // fetch data
-                    if (!App.lite) self.fetch();
+                    self.fetch();
                 });
             }
         },
         url : function()
         {
+            // Don't fetch data in lite mode
+            if(App.lite)
+                return "https://data.flatturtle.com/navitia_proxy.php";
+
             var d = new Date;
             var query = d.format("{Y}{m}{d}T{H}{M}{S}");
 
@@ -220,6 +224,9 @@
         },
         addPopup : function()
         {
+            // Don't add popup in lite mode
+            if(App.lite)
+                return;
             // wait for everything to load
             if (!this.template) return;
             if (!this.marker) return;
