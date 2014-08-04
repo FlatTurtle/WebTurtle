@@ -27,9 +27,7 @@
                     velo[i].distance = Math.round(parseInt(velo[i].distance)/10)*10;
                 }
 
-                var name = jQuery.trim(velo[i].name);
-                name = name.match(/^[0-9]+\s*-\s*(.*?)(?:[\/|:](.*))?$/)[1];
-                velo[i].name = name.capitalize();
+                velo[i].name = jQuery.trim(velo[i].name).capitalize();
 
                 if (!velo[i].freebikes)
                 {
