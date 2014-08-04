@@ -114,3 +114,18 @@ $.parameter = function(name)
        return results[1] || 0;
     }
 }
+
+// check if a key exists in an array
+function inArray(key, array)
+{
+    for(var i = 0; i < array.length; i++)
+    {
+        if (array[i] === key)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+

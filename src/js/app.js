@@ -9,20 +9,6 @@ window.App = (function() {
 
 	var config = null;
 
-    // check if a key exists in an array
-    function inArray(key, array)
-    {
-        for(var i = 0; i < array.length; i++)
-        {
-            if (array[i] === key)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 	/**
 	* Initialize the FlatTurtle object, fetches the configuration
     * json and triggers the Map object.
@@ -69,7 +55,6 @@ window.App = (function() {
             }
         });
 	}
-
 
 	return {
         debug: debug,
