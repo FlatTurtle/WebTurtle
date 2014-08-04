@@ -4,7 +4,24 @@ window.App = (function() {
     // toggle debugging
     var debug = true;
 
+    // whitelist for turtles so that unrelated turtles don't try to load
+    var whitelist = ["delijn", "mivb", "navitia", "nmbs", "villo", "velo"];
+
 	var config = null;
+
+    // check if a key exists in an array
+    function inArray(key, array)
+    {
+        for(var i = 0; i < array.length; i++)
+        {
+            if (array[i] === key)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 	/**
 	* Initialize the FlatTurtle object, fetches the configuration
@@ -40,7 +57,9 @@ window.App = (function() {
                 for (var id in config.turtles)
                 {
                     var turtle = config.turtles[id];
-                    Turtles.grow(turtle.type, id, turtle.options, Map);
+                    if (inArray(turtle.type, whitelist)) {
+                        Turtles.grow(turtle.type, id, turtle.options, Map);
+                    }
                 }
             },
             error: function(jqXHR, textStatus, errorThrown)
@@ -50,6 +69,7 @@ window.App = (function() {
             }
         });
 	}
+
 
 	return {
         debug: debug,
