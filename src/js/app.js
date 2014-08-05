@@ -50,8 +50,20 @@ window.App = (function() {
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
-                Log.error(errorThrown);
-                Log.error("Could not load JSON: " + api);
+                if (textStatus == 'timeout')
+                {
+                    Log.error("JSON request timed out -- Retrying in 2 seconds");
+                    setTimeout(
+                            function()
+                            {
+                                $.ajax(this)
+                            },2000);
+                } 
+                else
+                {
+                    Log.error(errorThrown);
+                    Log.error("Could not load JSON: " + api);
+                }
             }
         });
 	}
