@@ -124,7 +124,7 @@
                         else liveboard[i].route.icon = "img/icons/FT__0002_bus.png";
                     }
                 }else if(selected){
-                    if (selected <= 14) liveboard[i].route.icon = "img/icons/FT__0003_tram.png";
+                    if (selected <= 14) liveboard[i].route.icon = "img/icons/FT__0011_metro.png";
                     else liveboard[i].route.icon = "img/icons/FT__0002_bus.png";
                 }
 
