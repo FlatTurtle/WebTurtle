@@ -8,7 +8,7 @@
             // default limit
             if (!options.limit)
             {
-                options.limit = 5;
+                options.limit = 15;
             }
 
             this.options = options;
