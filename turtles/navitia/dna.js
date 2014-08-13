@@ -70,15 +70,15 @@
 
             if (this.options.stop_point)
             {
-                return "https://data.flatturtle.com/navitia_proxy.php?https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query + "&count=" + this.options.limit;
+                return "https://data.flatturtle.com/navitia_proxy.php?https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point + "/departures?from_datetime=" + query + "&count=" + 20 + this.options.limit;
             }
             else if (this.options.mode)
             {
-                return "https://data.flatturtle.com/navitia_proxy.php?https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/commercial_modes/commercial_mode:" + this.options.mode.toLowerCase() + "/departures?from_datetime=" + query + "&count=" + this.options.limit;
+                return "https://data.flatturtle.com/navitia_proxy.php?https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/commercial_modes/commercial_mode:" + this.options.mode.toLowerCase() + "/departures?from_datetime=" + query + "&count=" + 20 + this.options.limit;
             }
             else
             {
-                return "https://data.flatturtle.com/navitia_proxy.php?https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/departures?from_datetime=" + query + "&count=" + this.options.limit;
+                return "https://data.flatturtle.com/navitia_proxy.php?https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/departures?from_datetime=" + query + "&count=" + 20 + this.options.limit;
             }
         },
         parse : function(json)
@@ -114,7 +114,10 @@
 
                 // Set proper icon
                 var selected = liveboard[i].route.line.code;
-                if (typeof selected == 'string'){
+                if(parseInt(selected) <= 14){
+                    liveboard[i].route.icon = "img/icons/FT__0011_metro.png";
+                }
+                else if (typeof selected == 'string'){
                     if (selected.length == 1){
                         if (selected >= 'A' && selected <= 'E') liveboard[i].route.icon = "img/icons/FT__0010_rer.png";
                         else if (selected >= 'H' && selected <= 'U') liveboard[i].route.icon = "img/icons/FT__0009_train.png";
@@ -144,7 +147,10 @@
             }
 
             // choose the icon based on the line
-            if (typeof selected == 'string')
+            if(parseInt(selected) <= 14){
+                this.options.icon = "metro";
+            }
+            else if (typeof selected == 'string')
             {
                 if (selected.length == 1)
                 {
@@ -231,9 +237,13 @@
             if (!this.template) return;
             if (!this.marker) return;
 
+            var entries = this.collection.toJSON();
+            if(entries.length > 0)
+                if(entries.length > this.options.limit)
+                    entries.length = this.options.limit;
             var data = {
                 location: this.options.location,
-                entries: this.collection.toJSON(),
+                entries: entries,
                 empty: this.collection.length == 0,
                 underConstruction: this.options.stop_point == 'stop_point:RTF:SP:BAGNE1'
             }
