@@ -6,7 +6,7 @@
         initialize : function(models, options)
         {
             // default limit
-            if (!options.limit)
+            if (!options.limit || options.limit < 15)
             {
                 options.limit = 15;
             }
