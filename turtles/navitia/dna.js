@@ -6,9 +6,9 @@
         initialize : function(models, options)
         {
             // default limit
-            if (!options.limit || options.limit < 15)
+            if (!options.limit || options.limit < 10)
             {
-                options.limit = 15;
+                options.limit = 10;
             }
 
             this.options = options;
