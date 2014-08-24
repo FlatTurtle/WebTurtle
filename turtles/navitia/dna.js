@@ -211,7 +211,7 @@
             else
             {
                 // New bagneux RER station
-                if (this.options.stop_point == 'stop_area:RTP:SA:2059')
+                if (this.options.stop_point == 'stop_point:RTP:SA:2059')
                 {
                     this.marker = Map.marker(this.options.latitude, this.options.longitude, "rer");
                 }
@@ -245,7 +245,7 @@
                 location: this.options.location,
                 entries: entries,
                 empty: this.collection.length == 0,
-                underConstruction: this.options.stop_point == 'stop_area:RTF:SA:BAGNE'
+                underConstruction: (this.options.stop_point == 'stop_point:RTF:SA:BAGNE' || this.options.stop_area == 'stop_area:RTF:SA:BAGNE')
             }
 
             // render view
